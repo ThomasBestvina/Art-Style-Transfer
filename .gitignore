@@ -1,2 +1,4 @@
 inputs/
 outputs/
+models/discriminator_weights.pth
+models/generator_weights.pth
