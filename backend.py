@@ -8,6 +8,7 @@ import os
 from PIL import Image
 import base64
 import io
+from flask_cors import CORS
 
 
 transform = Compose([
@@ -32,6 +33,7 @@ generators[1].to(device).eval()
 
 # creating a Flask app 
 app = Flask(__name__) 
+CORS(app)
   
 def preprocess_image(img):
     image = img.convert("RGB")  # Ensure it's in RGB format
