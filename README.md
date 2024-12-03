@@ -1,6 +1,6 @@
 ### Final project for CS4640 Image Processing
 
-# Dependencies for pretrained models
+# Dependencies
 - flask
 - flask_cors
 - torch
