@@ -1,12 +1,15 @@
 ### Final project for CS4640 Image Processing
 
-# Dependencies
+# Dependencies for pretrained models
 - flask
 - flask_cors
 - torch
 - torchvision
 - Pillow
 - Numpy
+
+## Pretrained models
+https://drive.google.com/drive/folders/1pRoroXmoGMDjcoNOH3Yxn6CX9RYcorFq?usp=drive_link
 
 # Datasets used
 https://data.mendeley.com/datasets/3sjjtjfhx7/2
