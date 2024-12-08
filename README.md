@@ -7,6 +7,7 @@
 - torchvision
 - Pillow
 - Numpy
+- matplotlib
 
 ## Pretrained models
 https://drive.google.com/drive/folders/1pRoroXmoGMDjcoNOH3Yxn6CX9RYcorFq?usp=drive_link

@@ -9,7 +9,8 @@ from torchvision.utils import make_grid
 from PIL import Image
 
 class CNNBlock(nn.Module):
-    def __init__(self, in_channels, out_channels, stride=2, device="cuda"):
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    def __init__(self, in_channels, out_channels, stride=2, device=device):
         super().__init__()
         self.device = device
         self.conv = nn.Sequential(
@@ -22,7 +23,8 @@ class CNNBlock(nn.Module):
         return self.conv(x)
 
 class Discriminator(nn.Module):
-    def __init__(self, in_channels=3, features=[64, 128, 256, 512], device="cuda"):
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    def __init__(self, in_channels=3, features=[64, 128, 256, 512], device=device):
         super().__init__()
         self.device = device
         self.initial = nn.Sequential(
@@ -52,7 +54,8 @@ class Discriminator(nn.Module):
 
 
 class Block(nn.Module):
-    def __init__(self, in_channels, out_channels, down=True, act = 'relu', use_dropout=False, device="cuda"):
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    def __init__(self, in_channels, out_channels, down=True, act = 'relu', use_dropout=False, device=device):
         super().__init__()
         self.device = device
         self.conv = nn.Sequential(
@@ -70,7 +73,8 @@ class Block(nn.Module):
         return self.dropout(x) if self.use_dropout else x
 
 class Generator(nn.Module):
-    def __init__(self, in_channels=3, features=64, device="cuda"):
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    def __init__(self, in_channels=3, features=64, device=device):
         super().__init__()
         self.device = device
         self.initial_down = nn.Sequential(
