@@ -24,10 +24,10 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 
 generators = [Generator(in_channels=3, features=64), Generator(in_channels=3, features=64)]
 
-generators[0].load_state_dict(torch.load("models/monet/generator_weights.pth", map_location=device))
+generators[0].load_state_dict(torch.load("models/monet/generator_weights.pth",weights_only=False,  map_location=device))
 generators[0].to(device).eval()
 
-generators[1].load_state_dict(torch.load("models/vangogh/generator_weights.pth", map_location=device))
+generators[1].load_state_dict(torch.load("models/vangogh/generator_weights.pth",weights_only=False, map_location=device))
 generators[1].to(device).eval()
 
 
@@ -82,4 +82,4 @@ def process(gennum):
 # driver function 
 if __name__ == '__main__': 
   
-    app.run(debug = True) 
+    app.run(debug = True, ssl_context="adhoc") 
