@@ -31,7 +31,7 @@ document.getElementById('processBtn').addEventListener('click', async () => {
     formData.append('image', file);
 
     // Update the API URL to use the live backend
-    const apiUrl = `http://71.195.198.124:5000/processing/${genNumber}`;
+    const apiUrl = `http://localhost:5000`;
 
     try {
         const response = await fetch(apiUrl, {

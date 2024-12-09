@@ -4,9 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Processor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
 
-    <!-- Link to CSS file -->
-    <link rel="stylesheet" href="styles.css">
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .workflow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .workflow div {
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 200px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .arrow {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        input[type="file"], select, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -29,9 +77,6 @@
                 <select id="genNumber">
                     <option value="0">Monet</option>
                     <option value="1">Van Gogh</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
                 </select>
                 <br>
                 <button id="processBtn">Process Image</button>
@@ -48,9 +93,58 @@
         </div>
     </div>
 
-    <!-- Link to external JavaScript file -->
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('imageInput').addEventListener('change', (event) => {
+            const imageInput = event.target;
+            const originalImage = document.getElementById('originalImage');
+
+            if (imageInput.files && imageInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = (e) => {
+                    originalImage.src = e.target.result;
+                    originalImage.style.display = 'block';
+                };
+
+                reader.readAsDataURL(imageInput.files[0]);
+            }
+        });
+
+        document.getElementById('processBtn').addEventListener('click', async () => {
+            const imageInput = document.getElementById('imageInput');
+            const genNumber = document.getElementById('genNumber').value;
+            const outputImage = document.getElementById('outputImage');
+
+            if (!imageInput.files.length) {
+                alert('Please select an image.');
+                return;
+            }
+
+            const file = imageInput.files[0];
+            const formData = new FormData();
+            formData.append('image', file);
+
+            const apiUrl = `http://localhost:5000/processing/${genNumber}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to process image.');
+                }
+
+                const responseText = await response.text();
+                const imageUrl = responseText.slice(10, -2);
+
+                outputImage.src = imageUrl;
+                outputImage.style.display = 'block';
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        });
+    </script>
 </body>
 </html>
-
-
