@@ -5,9 +5,14 @@
 - flask_cors
 - torch
 - torchvision
-- Pillow
-- Numpy
+- pillow
+- numpy
 - matplotlib
+- cryptography
+
+# Run Instructions
+- Run backend.py, ensuring all dependencies are correctly installed
+- Open site/index.html in browser
 
 ## Pretrained models
 https://drive.google.com/drive/folders/1pRoroXmoGMDjcoNOH3Yxn6CX9RYcorFq?usp=drive_link
