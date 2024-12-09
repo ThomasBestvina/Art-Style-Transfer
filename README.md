@@ -11,6 +11,7 @@
 - cryptography
 
 # Run Instructions
+- Put pretrained models in their respective folders, (models/vangogh/), (models/monet/)
 - Run backend.py, ensuring all dependencies are correctly installed
 - Open site/index.html in browser
 
